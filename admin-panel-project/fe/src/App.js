@@ -1,13 +1,13 @@
+import {Routes, Route} from "react-router-dom"
 import './App.css';
-import { Route, Routes } from 'react-router-dom';
-import Users from './pages/User';
+import Users from './pages/Users';
 
 function App() {
   return (
     <div className="App">
       <h1>Admin panel project</h1>
       <Routes>
-        <Route path='/users' element={<Users />}/>
+        <Route path="/users" element={<Users />}/>
       </Routes>
     </div>
   );
