@@ -16,6 +16,9 @@ export default function UsersTable() {
     { field: "avatar", headerName: " Avatar", width: 100 },
     { field: "actions", headerName: " Actions", width: 100 },
   ];
+  const colum = [
+    
+  ]
 
   const rows = [
     {
@@ -83,7 +86,9 @@ export default function UsersTable() {
         rowsPerPageOptions={[3]}
         checkboxSelection
         style={{ height: "400px", width: "100%" }}
+        
       />
+      
     </Box>
   );
 }
