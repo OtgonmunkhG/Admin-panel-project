@@ -10,23 +10,25 @@ import {
 } from "@mui/material";
 import { useEffect } from "react";
 import { convertLength } from "@mui/material/styles/cssUtils";
+import { useState } from "react";
 
-export default function NewUser({URL, setUsers}) {
-useEffect(() => {
-    fetchAll()
-}, [])
-    async function fetchAll() {
-        const FETCHED_DATA = await fetch(URL)
-        const FETCHED_JSON = await FETCHED_DATA.json()
-        setUsers(FETCHED_JSON.data.data)
-    }
+export default function NewUser({ URL, setUsers }) {
+  const [isUpdate, setIsUpdate] = useState(false);
 
-function handleSubmit(e) {
-    e.preventDefault()
-    console.log("hello")
-    console.log(e.target.value)
+  useEffect(() => {
+    fetchAll();
+  }, []);
+  async function fetchAll() {
+    const FETCHED_DATA = await fetch(URL);
+    const FETCHED_JSON = await FETCHED_DATA.json();
+    setUsers(FETCHED_JSON.data.data);
+  }
 
-}
+  function handleSubmit(e) {
+    e.preventDefault();
+    console.log("hello");
+    console.log(e.target.name.value);
+  }
   return (
     <Container maxWidth="lg" sx={{ margin: "0 auto", paddingBottom: 5 }}>
       <Typography variant="h3" sx={{ marginBottom: 2 }}>
