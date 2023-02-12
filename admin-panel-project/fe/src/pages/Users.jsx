@@ -1,9 +1,10 @@
+import { Box } from "@mui/material";
 import UsersTable from "../components/UsersTabel";
 
 export default function Users() {
     return(
-        <div>
+        <Box sx={{width: "100%"}} size={{width: 100}}>
             <UsersTable />
-        </div>
+        </Box>
     )
 }

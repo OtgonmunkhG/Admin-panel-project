@@ -1,4 +1,5 @@
 import { Routes, Route } from "react-router-dom";
+import { Box } from "@mui/system";
 import User from "./pages/Users";
 import Product from "./pages/Product";
 import Navbar from "./components/Navbar";
@@ -13,13 +14,17 @@ function App() {
   return (
     <div className="App">
       <Navbar />
-      <Sidebar />
+      <Box display="flex" sx={{mt: 10}}>
+     <Sidebar />
       <Routes>
         <Route path="/user" element={<User />} />
+        <Route path="/users/add" element={<CreateNewUser />}/>
         <Route path="user/newuser" element={<CreateNewUser URL={URL} setUsers={setUsers} />} />
         <Route path="/product" element={<Product />} />
         <Route path="product/newproduct" element={<CreateProduct />} />
       </Routes>
+      </Box>
+ 
     </div>
   );
 }
