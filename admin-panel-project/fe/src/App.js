@@ -11,6 +11,12 @@ import { useState } from "react";
 function App() {
   const URL = "http://localhost:8080/users";
   const [users, setUsers] = useState()
+
+  async function fetchedData() {
+    const FETCHED_DATA = await fetch(URL)
+    const FETCHED_JSON = await FETCHED_DATA.json()
+    setUsers(FETCHED_JSON.data.data)
+  }
   return (
     <div className="App">
       <Navbar />
