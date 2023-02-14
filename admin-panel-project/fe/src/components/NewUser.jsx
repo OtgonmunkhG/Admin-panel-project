@@ -9,26 +9,39 @@ import {
   Typography,
 } from "@mui/material";
 import { useEffect } from "react";
-import { convertLength } from "@mui/material/styles/cssUtils";
-import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
-export default function NewUser({ URL, setUsers }) {
-  const [isUpdate, setIsUpdate] = useState(false);
+export default function NewUser() {
+  const URL = "http://localhost:8080/register";
 
-  useEffect(() => {
-    fetchAll();
-  }, []);
-  async function fetchAll() {
-    const FETCHED_DATA = await fetch(URL);
-    const FETCHED_JSON = await FETCHED_DATA.json();
-    setUsers(FETCHED_JSON.data.data);
-  }
-
-  function handleSubmit(e) {
+  const navigate = useNavigate();
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("hello");
-    console.log(e.target.name.value);
-  }
+    console.log(e.target.age.value);
+    const data = {
+      firstname: e.target.firstname.value,
+      lastname: e.target.lastname.value,
+      email: e.target.email.value,
+      age: e.target.age.value,
+      phonenumber: e.target.phonenumber.value,
+      gender: e.target.gender.value,
+      password: e.target.password.value,
+    };
+    const options = {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    };
+
+    const FETCHED_DATA = await fetch(URL, options);
+    const FETCHED_JSON = await FETCHED_DATA.json();
+    if (FETCHED_JSON.status === "success") {
+      navigate("/user");
+    }
+  };
+
   return (
     <Container maxWidth="lg" sx={{ margin: "0 auto", paddingBottom: 5 }}>
       <Typography variant="h3" sx={{ marginBottom: 2 }}>
@@ -51,49 +64,50 @@ export default function NewUser({ URL, setUsers }) {
               label={"First name"}
               variant={"outlined"}
               fullWidth={true}
+              name="firstname"
             />
             <TextField
-              name="name"
               type={"text"}
               label={"Last name"}
               variant={"outlined"}
               fullWidth={true}
+              name="lastname"
             />
             <TextField
-              name={"email"}
               type={"email"}
               label={"Email"}
               variant={"outlined"}
               fullWidth={true}
+              name="email"
             />
             <TextField
-              name="age"
               type={"number"}
               label={"Age"}
               variant={"outlined"}
               fullWidth={true}
+              name="age"
             />
             <TextField
-              name="phonenumber"
               type={"tel"}
               label={"Phone number"}
               variant={"outlined"}
               fullWidth={true}
+              name="phonenumber"
             />
             <FormControlLabel
-              name="gender"
               value="female"
               control={<Radio />}
               label="Female"
+              name="gender"
             />
             <FormControlLabel value="male" control={<Radio />} label="Male" />
             <FormControlLabel value="other" control={<Radio />} label="Other" />
             <TextField
-              name="role"
               type={"text"}
               label={"Role"}
               variant={"outlined"}
               fullWidth={true}
+              name="role"
             />
             {/* <TextField
               type={"file"}
@@ -103,11 +117,11 @@ export default function NewUser({ URL, setUsers }) {
             /> */}
 
             <TextField
-              name="password"
               type={"password"}
               label={"Password"}
               variant={"outlined"}
               fullWidth={true}
+              name="password"
             />
           </FormControl>
 
