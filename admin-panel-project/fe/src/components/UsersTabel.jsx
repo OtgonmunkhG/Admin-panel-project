@@ -1,5 +1,5 @@
 import { DataGrid } from "@mui/x-data-grid";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import Button from "@mui/material/Button";
 import { Link } from "react-router-dom";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
@@ -9,11 +9,12 @@ import MenuItem from "@mui/material/MenuItem";
 import Menu from "@mui/material/Menu";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { UserContext } from "../context/UserContext";
 
 export default function UsersTable() {
   const URL = "http://localhost:8080/users/add";
 
-  const [users, setUsers] = useState([]);
+  const { users, setUsers } = useContext(UserContext);
   const [open, setOpen] = useState(true);
   const [anchorEl, setAnchorEl] = useState(null);
   // const handleClick = () => {
