@@ -17,16 +17,12 @@ export default function UsersTable() {
   const { users, setUsers } = useContext(UserContext);
   const [open, setOpen] = useState(true);
   const [anchorEl, setAnchorEl] = useState(null);
-  // const handleClick = () => {
-  //   setOpen(!open);
-  // };
+
   const handleMenu = (event) => {
+    console.log(event.currentTarget)
     setAnchorEl(event.currentTarget);
   };
 
-  const handleClose = () => {
-    setAnchorEl(null);
-  };
 
   async function fetchAllData() {
     const FETCHED_DATA = await fetch(URL);
@@ -112,7 +108,7 @@ export default function UsersTable() {
               }}
               open={Boolean(anchorEl)}
             >
-              <MenuItem onClick={handleClose}>Edit</MenuItem>
+              <MenuItem >Edit</MenuItem>
               <MenuItem onClick={() => handleDelete(params.row.id)}>
                 Delete
               </MenuItem>
