@@ -12,7 +12,7 @@ import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
 export default function NewUser() {
-  const URL = "http://localhost:8080/register";
+  const URL = "http://localhost:8080/user/add";
 
   const navigate = useNavigate();
   const handleSubmit = async (e) => {
