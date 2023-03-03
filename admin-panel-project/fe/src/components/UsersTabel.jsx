@@ -18,12 +18,10 @@ export default function UsersTable() {
   const [anchorEl, setAnchorEl] = useState(null);
 
   const handleMenu = (event) => {
+    console.log(event.currentTarget)
     setAnchorEl(event.currentTarget);
   };
 
-  const handleClose = () => {
-    setAnchorEl(null);
-  };
 
   async function fetchAllData() {
     const FETCHED_DATA = await fetch(DATA_URL);
@@ -51,8 +49,14 @@ export default function UsersTable() {
     const FETCHED_JSON = await FETCHED_DATA.json();
     setUsers(FETCHED_JSON.data);
   }
+ const rows = [
+  { id: 1,  firstname: 'Hello', lastname: 'World' },
+  { id: 2, col1: 'DataGridPro', col2: 'is Awesome' },
+  { id: 3, col1: 'MUI', col2: 'is Amazing' },
+];
 
   const columns = [
+    
     { field: "id", headerName: "ID", width: 70 },
     { field: "firstname", headerName: "First name", width: 130 },
     { field: "lastname", headerName: "Last name", width: 130 },
@@ -63,6 +67,7 @@ export default function UsersTable() {
       width: 130,
     },
     {
+      field: "col2",
       field: "email",
       headerName: "E-mail",
       description: "This column has a value getter and is not sortable.",
@@ -111,7 +116,7 @@ export default function UsersTable() {
               }}
               open={Boolean(anchorEl)}
             >
-              <MenuItem onClick={handleClose}>Edit</MenuItem>
+              <MenuItem >Edit</MenuItem>
               <MenuItem onClick={() => handleDelete(params.row.id)}>
                 Delete
               </MenuItem>
@@ -134,7 +139,7 @@ export default function UsersTable() {
       <br />
       <br />
       <DataGrid
-        rows={users}
+        rows={rows}
         columns={columns}
         pageSize={6}
         rowsPerPageOptions={[5]}
