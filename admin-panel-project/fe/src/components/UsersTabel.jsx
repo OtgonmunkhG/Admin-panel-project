@@ -12,14 +12,11 @@ import "react-toastify/dist/ReactToastify.css";
 import { UserContext } from "../context/UserContext";
 
 export default function UsersTable() {
-  const URL = "http://localhost:8080/users/add";
-
+  const DATA_URL = "http://localhost:8080/user/add";
   const { users, setUsers } = useContext(UserContext);
   const [open, setOpen] = useState(true);
   const [anchorEl, setAnchorEl] = useState(null);
-  // const handleClick = () => {
-  //   setOpen(!open);
-  // };
+
   const handleMenu = (event) => {
     setAnchorEl(event.currentTarget);
   };
@@ -29,8 +26,10 @@ export default function UsersTable() {
   };
 
   async function fetchAllData() {
-    const FETCHED_DATA = await fetch(URL);
+    const FETCHED_DATA = await fetch(DATA_URL);
     const FETCHED_JSON = await FETCHED_DATA.json();
+    console.log(FETCHED_JSON);
+    console.log(users);
     setUsers(FETCHED_JSON.data);
   }
   useEffect(() => {

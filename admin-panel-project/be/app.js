@@ -45,7 +45,7 @@ app.post("/register", (request, response) => {
   });
 });
 
-// app.get("/users", (request, response) => {
+// app.get("/user/add", (request, response) => {
 //   console.log(request.body);
 //   fs.readFile("./data/users.json", "utf-8", (readError, readData) => {
 //     if (readError) {
