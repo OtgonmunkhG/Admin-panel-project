@@ -1,0 +1,22 @@
+GET  http://localhost:8080/user HTTP/1.1
+Content-Type: application/json
+
+
+###
+
+POST http://localhost:8080/user/add HTTP/1.1
+Content-Type: application/json
+
+
+{
+    "firstName": "Mercol",
+    "lastName": "Jhon",
+    "birthDate": "1990-04-08",
+    "email": "mercol@gmail.com",
+    "phoneNumber": "123455",
+    "address": "U.S",
+    "userRoleId": "4"
+}
+
+
+###

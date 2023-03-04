@@ -12,22 +12,22 @@ import "react-toastify/dist/ReactToastify.css";
 import { UserContext } from "../context/UserContext";
 
 export default function UsersTable() {
-  const URL = "http://localhost:8080/users/add";
-
-  const { users, setUsers } = useContext(UserContext);
+  const DATA_URL = "http://localhost:8080/user";
+  const [users, setUsers] = useState([]);
   const [open, setOpen] = useState(true);
   const [anchorEl, setAnchorEl] = useState(null);
 
   const handleMenu = (event) => {
-    console.log(event.currentTarget)
+    console.log(event.currentTarget);
     setAnchorEl(event.currentTarget);
   };
 
-
   async function fetchAllData() {
-    const FETCHED_DATA = await fetch(URL);
+    const FETCHED_DATA = await fetch(DATA_URL);
     const FETCHED_JSON = await FETCHED_DATA.json();
-    setUsers(FETCHED_JSON.data);
+    console.log(FETCHED_JSON);
+
+    setUsers(FETCHED_JSON);
   }
   useEffect(() => {
     fetchAllData();
@@ -48,25 +48,23 @@ export default function UsersTable() {
     const FETCHED_JSON = await FETCHED_DATA.json();
     setUsers(FETCHED_JSON.data);
   }
- const rows = [
-  { id: 1,  firstname: 'Hello', lastname: 'World' },
-  { id: 2, col1: 'DataGridPro', col2: 'is Awesome' },
-  { id: 3, col1: 'MUI', col2: 'is Amazing' },
-];
+  //  const rows = [
+  //   { id: 1,  firstname: 'Hello', lastname: 'World' , phoneNumber: },
+  //   { id: 2, col1: 'DataGridPro', col2: 'is Awesome' },
+  //   { id: 3, col1: 'MUI', col2: 'is Amazing' },
+  // ];
 
   const columns = [
-    
     { field: "id", headerName: "ID", width: 70 },
-    { field: "firstname", headerName: "First name", width: 130 },
-    { field: "lastname", headerName: "Last name", width: 130 },
+    { field: "first_name", headerName: "First name", width: 130 },
+    { field: "last_name", headerName: "Last name", width: 130 },
     {
-      field: "phoneNumber",
+      field: "phone_number",
       headerName: "Phone Number",
       type: "number",
       width: 130,
     },
     {
-      field: "col2",
       field: "email",
       headerName: "E-mail",
       description: "This column has a value getter and is not sortable.",
@@ -74,7 +72,7 @@ export default function UsersTable() {
       width: 160,
     },
     {
-      field: "role",
+      field: "user_role_id",
       headerName: "Role",
       description: "This column has a value getter and is not sortable.",
       sortable: false,
@@ -115,7 +113,7 @@ export default function UsersTable() {
               }}
               open={Boolean(anchorEl)}
             >
-              <MenuItem >Edit</MenuItem>
+              <MenuItem>Edit</MenuItem>
               <MenuItem onClick={() => handleDelete(params.row.id)}>
                 Delete
               </MenuItem>
@@ -138,8 +136,8 @@ export default function UsersTable() {
       <br />
       <br />
       <DataGrid
-        rows={rows}
         columns={columns}
+        rows={users}
         pageSize={6}
         rowsPerPageOptions={[5]}
         checkboxSelection
