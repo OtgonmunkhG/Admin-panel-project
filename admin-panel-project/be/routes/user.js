@@ -14,19 +14,13 @@ user_router.post("user/add", async (request, response) => {
   const [
     firstName,
     lastName,
-    birthDate,
     email,
-    phoneNumber,
-    address,
     userRoleId,
   ] = request.body;
   const result = await createUser(
     firstName,
     lastName,
-    birthDate,
     email,
-    phoneNumber,
-    address,
     userRoleId
   );
   console.log(request.body);
