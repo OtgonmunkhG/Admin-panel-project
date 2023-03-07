@@ -26,5 +26,9 @@ user_router.post("user/add", async (request, response) => {
   console.log(request.body);
   response.status(200).send(result);
 });
+user_router.put("user", async(request, response) => {
+  const [firstName, lastName, email, userRole] = request.body;
+  console.log(request.body)
+})
 
 export default user_router;
